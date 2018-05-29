@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.framgia.music_16.MainActivity">
+        <activity android:name="com.framgia.music_16.screen.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
