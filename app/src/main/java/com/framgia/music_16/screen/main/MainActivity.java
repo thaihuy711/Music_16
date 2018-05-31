@@ -7,6 +7,7 @@ import com.framgia.music_16.R;
 import com.framgia.music_16.screen.BaseActivity;
 
 public class MainActivity extends BaseActivity {
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

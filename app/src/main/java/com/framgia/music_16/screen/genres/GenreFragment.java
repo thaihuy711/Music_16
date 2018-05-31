@@ -15,7 +15,7 @@ public class GenreFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.genres_fragment, container, false);
+        View view = inflater.inflate(R.layout.fragment_genres, container, false);
         return view;
     }
 }
