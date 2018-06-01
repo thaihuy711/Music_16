@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/image_artist"
+        android:id="@+id/image_artist_my_song"
         android:layout_width="@dimen/dp_100"
         android:layout_height="@dimen/dp_100"
         android:layout_margin="@dimen/dp_5"
@@ -18,14 +18,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/text_song"
+        android:id="@+id/text_song_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
         android:textSize="@dimen/sp_20"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.05"
-        app:layout_constraintLeft_toRightOf="@id/image_artist"
+        app:layout_constraintLeft_toRightOf="@id/image_artist_my_song"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.3" />
@@ -36,9 +36,9 @@
         android:layout_height="wrap_content"
         android:textSize="@dimen/sp_15"
         app:layout_constraintHorizontal_bias="0.05"
-        app:layout_constraintLeft_toRightOf="@id/image_artist"
+        app:layout_constraintLeft_toRightOf="@id/image_artist_my_song"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_song" />
+        app:layout_constraintTop_toBottomOf="@id/text_song_name" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -47,7 +47,7 @@
         android:src="@drawable/ic_more"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintLeft_toRightOf="@id/text_song"
+        app:layout_constraintLeft_toRightOf="@id/text_song_name"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

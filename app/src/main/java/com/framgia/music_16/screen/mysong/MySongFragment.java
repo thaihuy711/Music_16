@@ -15,7 +15,7 @@ public class MySongFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.my_song_fragment, container, false);
+        View view = inflater.inflate(R.layout.fragment_my_song, container, false);
         return view;
     }
 }
