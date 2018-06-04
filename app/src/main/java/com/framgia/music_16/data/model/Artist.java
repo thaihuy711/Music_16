@@ -4,16 +4,19 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Artist implements Parcelable {
-    private String mAvartarUrl;
+    private String mAvatarUrl;
     private int mId;
     private String mUsername;
 
-    public String getAvartarUrl() {
-        return mAvartarUrl;
+    public Artist() {
     }
 
-    public void setAvartarUrl(String avartarUrl) {
-        mAvartarUrl = avartarUrl;
+    public String getAvatarUrl() {
+        return mAvatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        mAvatarUrl = avatarUrl;
     }
 
     public int getId() {
@@ -36,8 +39,8 @@ public class Artist implements Parcelable {
         return CREATOR;
     }
 
-    protected Artist(Parcel in) {
-        mAvartarUrl = in.readString();
+    private Artist(Parcel in) {
+        mAvatarUrl = in.readString();
         mId = in.readInt();
         mUsername = in.readString();
     }
@@ -61,13 +64,13 @@ public class Artist implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(mAvartarUrl);
+        dest.writeString(mAvatarUrl);
         dest.writeInt(mId);
         dest.writeString(mUsername);
     }
 
-    class ArtistEntry {
-        public static final String USER_ID = "user_id";
+    public class ArtistEntry {
+        public static final String USER_ID = "id";
         public static final String USER_NAME = "username";
         public static final String AVATAR_URL = "avatar_url";
     }
