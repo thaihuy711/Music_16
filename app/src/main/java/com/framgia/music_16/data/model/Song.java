@@ -5,7 +5,6 @@ import android.os.Parcelable;
 
 public class Song implements Parcelable {
     private int mId;
-    private String mKind;
     private String mUri;
     private int mUserId;
     private String mGenre;
@@ -15,9 +14,8 @@ public class Song implements Parcelable {
     private int mDuration;
     private Artist mArtist;
 
-    protected Song(Parcel in) {
+    private Song(Parcel in) {
         mId = in.readInt();
-        mKind = in.readString();
         mUri = in.readString();
         mUserId = in.readInt();
         mGenre = in.readString();
@@ -40,6 +38,9 @@ public class Song implements Parcelable {
         }
     };
 
+    public Song() {
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -48,7 +49,6 @@ public class Song implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(mId);
-        dest.writeString(mKind);
         dest.writeString(mUri);
         dest.writeInt(mUserId);
         dest.writeString(mGenre);
@@ -65,14 +65,6 @@ public class Song implements Parcelable {
 
     public void setId(int id) {
         mId = id;
-    }
-
-    public String getKind() {
-        return mKind;
-    }
-
-    public void setKind(String kind) {
-        mKind = kind;
     }
 
     public String getUri() {
@@ -143,7 +135,7 @@ public class Song implements Parcelable {
         return CREATOR;
     }
 
-    class SongEntry {
+    public class SongEntry {
         public static final String ID = "id";
         public static final String URI = "uri";
         public static final String TITLE = "title";
