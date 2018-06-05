@@ -1,31 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<android.support.v4.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager_slider"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_150"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/text_genre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/genres"
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/sp_20"
-        app:layout_constraintTop_toBottomOf="@id/viewpager_slider" />
+        <ImageView
+            android:id="@+id/image_song_alternativerock"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_150"
+            android:background="@drawable/image_alternative"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView_home"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/text_genre" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/alternavtiveRock"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:textSize="@dimen/sp_20"
+            app:layout_constraintBottom_toBottomOf="@id/image_song_alternativerock"
+            app:layout_constraintLeft_toLeftOf="@id/image_song_alternativerock"
+            app:layout_constraintRight_toRightOf="@id/image_song_alternativerock"
+            app:layout_constraintTop_toTopOf="@id/image_song_alternativerock" />
 
-</android.support.constraint.ConstraintLayout>
+        <ImageView
+            android:id="@+id/image_song_country"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_150"
+            android:background="@drawable/image_country"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image_song_alternativerock" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/country"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp_20"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/image_song_country"
+            app:layout_constraintLeft_toLeftOf="@id/image_song_country"
+            app:layout_constraintRight_toRightOf="@id/image_song_country"
+            app:layout_constraintTop_toTopOf="@id/image_song_country" />
+
+        <ImageView
+            android:id="@+id/image_song_ambient"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_150"
+            android:background="@drawable/image_ambient"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image_song_country" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ambient"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp_20"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/image_song_ambient"
+            app:layout_constraintLeft_toLeftOf="@id/image_song_ambient"
+            app:layout_constraintRight_toRightOf="@id/image_song_ambient"
+            app:layout_constraintTop_toTopOf="@id/image_song_ambient" />
+
+        <ImageView
+            android:id="@+id/image_song_classical"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_150"
+            android:background="@drawable/image_classical"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image_song_ambient" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/classical"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp_20"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/image_song_classical"
+            app:layout_constraintLeft_toLeftOf="@id/image_song_classical"
+            app:layout_constraintRight_toRightOf="@id/image_song_classical"
+            app:layout_constraintTop_toTopOf="@id/image_song_classical" />
+
+        <FrameLayout
+            android:id="@+id/frame_content_home"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.v4.widget.NestedScrollView>

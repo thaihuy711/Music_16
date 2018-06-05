@@ -5,4 +5,9 @@
     <string name="search">Search</string>
     <string name="genres">Genres</string>
     <string name="artist">Artist</string>
+    <string name="alternavtiveRock">AlternavtiveRock</string>
+    <string name="country">Country</string>
+    <string name="ambient">Ambient</string>
+    <string name="classical">Classical</string>
+    <string name="rock">Rock</string>
 </resources>
