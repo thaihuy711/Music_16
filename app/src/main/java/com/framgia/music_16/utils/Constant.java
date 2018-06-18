@@ -1,5 +1,6 @@
 package com.framgia.music_16.utils;
 
+import android.support.annotation.IntDef;
 import android.support.annotation.StringDef;
 
 import com.framgia.music_16.BuildConfig;
@@ -31,5 +32,13 @@ public final class Constant {
 
     private Constant() {
 
+    }
+
+    @IntDef({Tab.TAB_HOME, Tab.TAB_MY_SONG, Tab.TAB_SEARCH, Tab.TAB_ARTIST})
+    public @interface Tab {
+        int TAB_HOME = 0;
+        int TAB_MY_SONG = 1;
+        int TAB_SEARCH = 2;
+        int TAB_ARTIST = 3;
     }
 }
