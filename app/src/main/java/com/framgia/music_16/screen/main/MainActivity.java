@@ -5,14 +5,16 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.MenuItem;
-
+import android.view.View;
 import com.framgia.music_16.R;
 import com.framgia.music_16.screen.BaseActivity;
+import com.framgia.music_16.screen.playmusic.PlayMusicFragment;
 import com.framgia.music_16.utils.Constant;
 
-public class MainActivity extends BaseActivity implements
-        BottomNavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends BaseActivity
+        implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     private BottomNavigationView mBottomNavigationView;
     private UnSwipeViewpager mViewPager;
@@ -55,6 +57,26 @@ public class MainActivity extends BaseActivity implements
     @Override
     public void onBackPressed() {
         FragmentManager fm = getSupportFragmentManager();
+        PlayMusicFragment fragment =
+                (PlayMusicFragment) fm.findFragmentByTag(PlayMusicFragment.class.getSimpleName());
+        if (fragment != null && !fragment.isHidden()) {
+            hideFragmentPlayMusicToBottomLayout(fm, fragment);
+            return;
+        } else {
+            checkFragmentBackPressed(fm);
+        }
+        super.onBackPressed();
+    }
+
+    public void hideFragmentPlayMusicToBottomLayout(FragmentManager fm,
+            PlayMusicFragment fragment) {
+        mBottomNavigationView.setVisibility(View.VISIBLE);
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.hide(fragment);
+        fragmentTransaction.commit();
+    }
+
+    public void checkFragmentBackPressed(FragmentManager fm) {
         for (Fragment frag : fm.getFragments()) {
             if (frag.isVisible()) {
                 FragmentManager childFm = frag.getChildFragmentManager();
@@ -64,6 +86,13 @@ public class MainActivity extends BaseActivity implements
                 }
             }
         }
-        super.onBackPressed();
+    }
+
+    public void setNavigationVisibility(boolean isChecked) {
+        if (isChecked) {
+            mBottomNavigationView.setVisibility(View.VISIBLE);
+        } else {
+            mBottomNavigationView.setVisibility(View.GONE);
+        }
     }
 }
