@@ -21,17 +21,18 @@ import java.util.List;
 public class SongGenresAdapter extends BaseRecyclerViewAdapter<SongGenresAdapter.ViewHolder> {
 
     private List<Song> mSongs = new ArrayList<>();
+    private ItemClickListener mItemClickListener;
 
-    protected SongGenresAdapter(Context mContext) {
+    public SongGenresAdapter(Context mContext, ItemClickListener itemClickListener) {
         super(mContext);
+        mItemClickListener = itemClickListener;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.item_my_song,
-                parent, false);
-        return new ViewHolder(view);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.item_my_song, parent, false);
+        return new ViewHolder(view, mItemClickListener);
     }
 
     @Override
@@ -47,16 +48,24 @@ public class SongGenresAdapter extends BaseRecyclerViewAdapter<SongGenresAdapter
         notifyDataSetChanged();
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private ImageView mImageViewGenre;
         private TextView mTextViewGenre;
         private TextView mTextViewArtist;
+        private ItemClickListener mClickListener;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(View itemView, ItemClickListener listener) {
             super(itemView);
             mImageViewGenre = itemView.findViewById(R.id.image_artist_my_song);
             mTextViewGenre = itemView.findViewById(R.id.text_song_name);
             mTextViewArtist = itemView.findViewById(R.id.text_artist);
+            mClickListener = listener;
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            mClickListener.onItemClicked(getAdapterPosition());
         }
 
         void setData(Song song) {
@@ -77,5 +86,9 @@ public class SongGenresAdapter extends BaseRecyclerViewAdapter<SongGenresAdapter
     @Override
     public int getItemCount() {
         return mSongs != null ? mSongs.size() : 0;
+    }
+
+    public interface ItemClickListener {
+        void onItemClicked(int position);
     }
 }

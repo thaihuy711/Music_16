@@ -3,6 +3,8 @@ package com.framgia.music_16.screen.songgenres;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,17 +17,19 @@ import com.framgia.music_16.data.model.Song;
 import com.framgia.music_16.data.repository.SongRepository;
 import com.framgia.music_16.data.source.remote.SongRemoteDataSource;
 import com.framgia.music_16.screen.BaseFragment;
-import com.framgia.music_16.utils.Constant;
+import com.framgia.music_16.screen.playmusic.PlayMusicFragment;
 
 import java.util.List;
 
-public class SongGenresFragment extends BaseFragment implements SongGenresContract.View {
+public class SongGenresFragment extends BaseFragment
+        implements SongGenresContract.View, SongGenresAdapter.ItemClickListener {
 
     public static String ARGUMENT_GENRE = "ARGUMENT_GENRE";
 
     private SongGenresPresenter mPresenter;
     private RecyclerView mRecyclerView;
     private View mView;
+    private List<Song> mSongs;
 
     public static SongGenresFragment getGenreFragment(String genre) {
         SongGenresFragment songGenresFragment = new SongGenresFragment();
@@ -56,7 +60,8 @@ public class SongGenresFragment extends BaseFragment implements SongGenresContra
 
     @Override
     public void showGenres(List<Song> songs) {
-        SongGenresAdapter adapter = new SongGenresAdapter(getContext());
+        mSongs = songs;
+        SongGenresAdapter adapter = new SongGenresAdapter(getContext(), this);
         adapter.addData(songs);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(layoutManager);
@@ -66,5 +71,15 @@ public class SongGenresFragment extends BaseFragment implements SongGenresContra
     @Override
     public void onError(Exception e) {
         Toast.makeText(getContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onItemClicked(int position) {
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.content_main, PlayMusicFragment.newInstance(mSongs, position),
+                PlayMusicFragment.class.getSimpleName());
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 }

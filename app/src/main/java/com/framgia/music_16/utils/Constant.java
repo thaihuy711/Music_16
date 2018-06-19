@@ -27,6 +27,7 @@ public final class Constant {
     public static final String COLLECTION = "collection";
     public static final String USER = "user";
     public static final String REQUEST_METHOD = "GET";
+    public static final String ARGUMENT_POSITION = "position";
     public static final int READ_TIMEOUT = 10000;
     public static final int CONNECT_TIMEOUT = 15000;
 
