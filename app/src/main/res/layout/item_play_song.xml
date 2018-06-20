@@ -29,9 +29,7 @@
         android:textColor="@android:color/black"
         android:textSize="@dimen/sp_15"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintLeft_toRightOf="@id/image_artist_item"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.3"
         />
@@ -42,13 +40,11 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp_10"
         android:textSize="@dimen/sp_10"
-        app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintLeft_toRightOf="@id/image_artist_item"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_song_name_item"
         />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/image_button_next_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -60,18 +56,18 @@
         app:layout_constraintTop_toTopOf="parent"
         />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/image_button_play_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        android:src="@drawable/ic_play"
+        android:src="@drawable/ic_pause"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toLeftOf="@id/image_button_next_item"
         app:layout_constraintTop_toTopOf="parent"
         />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/image_button_previous_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

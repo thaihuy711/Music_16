@@ -17,32 +17,25 @@ import com.framgia.music_16.utils.Constant;
 
 public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
-    private View mView;
-    private ImageView mImageViewAlternativeRock;
-    private ImageView mImageViewAmbient;
-    private ImageView mImageViewClassical;
-    private ImageView mImageViewCountry;
-    private FragmentTransaction mTransaction;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_home, container, false);
-        initViews(mView);
-        return mView;
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        initViews(view);
+        return view;
     }
 
     private void initViews(View view) {
-        mImageViewAlternativeRock = view.findViewById(R.id.image_song_alternativerock);
-        mImageViewAmbient = view.findViewById(R.id.image_song_ambient);
-        mImageViewClassical = view.findViewById(R.id.image_song_classical);
-        mImageViewCountry = view.findViewById(R.id.image_song_country);
+        ImageView imageViewAlternativeRock = view.findViewById(R.id.image_song_alternativerock);
+        ImageView imageViewAmbient = view.findViewById(R.id.image_song_ambient);
+        ImageView imageViewClassical = view.findViewById(R.id.image_song_classical);
+        ImageView imageViewCountry = view.findViewById(R.id.image_song_country);
 
-        mImageViewAlternativeRock.setOnClickListener(this);
-        mImageViewAmbient.setOnClickListener(this);
-        mImageViewCountry.setOnClickListener(this);
-        mImageViewClassical.setOnClickListener(this);
+        imageViewAlternativeRock.setOnClickListener(this);
+        imageViewAmbient.setOnClickListener(this);
+        imageViewCountry.setOnClickListener(this);
+        imageViewClassical.setOnClickListener(this);
     }
 
     @Override
@@ -62,9 +55,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 fragment = SongGenresFragment.getGenreFragment(Constant.Genres.CLASSICAL);
                 break;
         }
-        mTransaction = getChildFragmentManager().beginTransaction();
-        mTransaction.add(R.id.frame_content_home, fragment);
-        mTransaction.addToBackStack(null);
-        mTransaction.commit();
+        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+        transaction.add(R.id.frame_content_home, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }

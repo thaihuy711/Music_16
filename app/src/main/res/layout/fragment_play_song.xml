@@ -143,7 +143,7 @@
         app:layout_constraintVertical_bias="0.7"
         />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/image_button_shuffle_player"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -158,7 +158,7 @@
         app:layout_constraintVertical_bias="0.4"
         />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/image_button_previous_player"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -172,12 +172,12 @@
         app:layout_constraintVertical_bias="0.4"
         />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/image_button_play_player"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        android:src="@drawable/ic_play"
+        android:src="@drawable/ic_pause"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintLeft_toRightOf="@id/image_button_previous_player"
@@ -186,7 +186,7 @@
         app:layout_constraintVertical_bias="0.4"
         />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/image_button_next_player"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -200,7 +200,7 @@
         app:layout_constraintVertical_bias="0.4"
         />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/image_button_loop_player"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
