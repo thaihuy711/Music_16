@@ -2,6 +2,7 @@ package com.framgia.music_16.screen.main;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -14,10 +15,13 @@ import com.framgia.music_16.screen.playmusic.PlayMusicFragment;
 import com.framgia.music_16.utils.Constant;
 
 public class MainActivity extends BaseActivity
-        implements BottomNavigationView.OnNavigationItemSelectedListener {
+        implements BottomNavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     private BottomNavigationView mBottomNavigationView;
     private UnSwipeViewpager mViewPager;
+    private ConstraintLayout mConstraintLayout;
+    private FragmentManager mFragmentManager;
+    private PlayMusicFragment mPlayMusicFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +33,9 @@ public class MainActivity extends BaseActivity
     private void initView() {
         mBottomNavigationView = findViewById(R.id.navigation_bottom);
         mViewPager = findViewById(R.id.view_pager);
+        mConstraintLayout = findViewById(R.id.constraint_item_play_song);
         mBottomNavigationView.setOnNavigationItemSelectedListener(this);
+        mConstraintLayout.setOnClickListener(this);
         MainAdapter mainAdapter = new MainAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(mainAdapter);
         mViewPager.setPagingEnabled(false);
@@ -55,29 +61,41 @@ public class MainActivity extends BaseActivity
     }
 
     @Override
-    public void onBackPressed() {
-        FragmentManager fm = getSupportFragmentManager();
-        PlayMusicFragment fragment =
-                (PlayMusicFragment) fm.findFragmentByTag(PlayMusicFragment.class.getSimpleName());
-        if (fragment != null && !fragment.isHidden()) {
-            hideFragmentPlayMusicToBottomLayout(fm, fragment);
-            return;
-        } else {
-            checkFragmentBackPressed(fm);
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.constraint_item_play_song:
+                showPlayMusicFragment();
+                mBottomNavigationView.setVisibility(View.GONE);
+                break;
         }
-        super.onBackPressed();
     }
 
-    public void hideFragmentPlayMusicToBottomLayout(FragmentManager fm,
-            PlayMusicFragment fragment) {
+    @Override
+    public void onBackPressed() {
+        mFragmentManager = getSupportFragmentManager();
+        mPlayMusicFragment = (PlayMusicFragment) mFragmentManager.findFragmentByTag(
+                PlayMusicFragment.class.getSimpleName());
+        if (mPlayMusicFragment != null && !mPlayMusicFragment.isHidden()) {
+            hideFragmentPlayMusicToBottomLayout();
+            return;
+        } else {
+            checkFragmentBackPressed();
+            return;
+        }
+    }
+
+    public void hideFragmentPlayMusicToBottomLayout() {
+        mConstraintLayout.setVisibility(View.VISIBLE);
         mBottomNavigationView.setVisibility(View.VISIBLE);
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.hide(fragment);
+        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.anim.slide_out_down, R.anim.slide_out_up);
+        fragmentTransaction.hide(mPlayMusicFragment);
         fragmentTransaction.commit();
     }
 
-    public void checkFragmentBackPressed(FragmentManager fm) {
-        for (Fragment frag : fm.getFragments()) {
+    public void checkFragmentBackPressed() {
+        mFragmentManager = getSupportFragmentManager();
+        for (Fragment frag : mFragmentManager.getFragments()) {
             if (frag.isVisible()) {
                 FragmentManager childFm = frag.getChildFragmentManager();
                 if (childFm.getBackStackEntryCount() > 0) {
@@ -93,6 +111,18 @@ public class MainActivity extends BaseActivity
             mBottomNavigationView.setVisibility(View.VISIBLE);
         } else {
             mBottomNavigationView.setVisibility(View.GONE);
+        }
+    }
+
+    private void showPlayMusicFragment() {
+        mFragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.anim.slide_in_up, R.anim.slide_in_down);
+        mPlayMusicFragment = (PlayMusicFragment) mFragmentManager.findFragmentByTag(
+                PlayMusicFragment.class.getSimpleName());
+        if (mPlayMusicFragment != null && mPlayMusicFragment.isHidden()) {
+            fragmentTransaction.show(mPlayMusicFragment);
+            fragmentTransaction.commit();
         }
     }
 }

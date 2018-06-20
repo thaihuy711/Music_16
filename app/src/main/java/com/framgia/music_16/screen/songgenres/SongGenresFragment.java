@@ -11,14 +11,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
 import com.framgia.music_16.R;
 import com.framgia.music_16.data.model.Song;
 import com.framgia.music_16.data.repository.SongRepository;
 import com.framgia.music_16.data.source.remote.SongRemoteDataSource;
 import com.framgia.music_16.screen.BaseFragment;
 import com.framgia.music_16.screen.playmusic.PlayMusicFragment;
-
 import java.util.List;
 
 public class SongGenresFragment extends BaseFragment
@@ -77,7 +75,9 @@ public class SongGenresFragment extends BaseFragment
     public void onItemClicked(int position) {
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.content_main, PlayMusicFragment.newInstance(mSongs, position),
+        fragmentTransaction.setCustomAnimations(R.anim.slide_in_up, R.anim.slide_in_down);
+        fragmentTransaction.replace(R.id.content_main,
+                PlayMusicFragment.newInstance(mSongs, position),
                 PlayMusicFragment.class.getSimpleName());
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
